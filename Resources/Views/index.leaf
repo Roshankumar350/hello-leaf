@@ -1,12 +1,30 @@
-<!doctype html>
-<html lang="en">
-<head>
-  <meta charset="utf-8">
+#extend("base"):
+#export("title", "Index Page")
+    #export("body"):
+    <ul>
+         
+         #for(movie in movies):
+            <li>
+                <div>
+                    #(movie.name)
+                    <br />
+                    #for(review in movie.reviews):
+                    <div>#(review.title) - #(review.rating)</div>
+                    #endfor
+                </div>
+            </li>
+         #endfor 
+    </ul>
+    
+    <form action="/add-movie" method="POST">
+        <input type ="text" name ="name"/>
+        <Button> Add Movie </Button>
+    </form>
 
-  <title>#(title)</title>
-</head>
-
-<body>
-  <h1>#(title)</h1>
-</body>
-</html>
+   <form action="/about-us" method="GET">
+       <Button> About Us </Button>
+   </form>
+    
+    
+    #endexport
+#endextend
